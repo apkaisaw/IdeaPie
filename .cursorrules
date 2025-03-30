@@ -1,0 +1,19 @@
+## commit message
+Please generate a compliant Git Commit Message, requirements:
+1. Follow the template below:
+‹type>(<scope>): <subject>
+<body>
+<footer>
+2. Notes:
+- Each line should not exceed 72 characters
+- Header is mandatory, Body and Footer are optional
+- Use clear verbs to start
+- Provide necessary contextual information
+3. Types include:
+- feat: new feature
+- fix: bug fix
+- docs: documentation update
+- style: formatting adjustment
+- refactor: refactoring
+- test: test related
+- chore: build/tools related

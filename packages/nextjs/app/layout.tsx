@@ -4,7 +4,10 @@ import { ThemeProvider } from "~~/components/ThemeProvider";
 import "~~/styles/globals.css";
 import { getMetadata } from "~~/utils/scaffold-eth/getMetadata";
 
-export const metadata = getMetadata({ title: "Scaffold-ETH 2 App", description: "Built with 🏗 Scaffold-ETH 2" });
+export const metadata = getMetadata({ 
+  title: "Idea Pie - AI-Powered Fair Bonus Allocator", 
+  description: "Empower your team to split rewards fairly — and verifiably — with the help of AI and blockchain." 
+});
 
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   return (
