@@ -77,36 +77,40 @@ const InputTeamPage = () => {
         <div className="space-y-6">
           <div>
             <label className="label">Project Name:</label>
-            <input
-              type="text"
-              className="input input-bordered w-full"
-              value={projectName}
-              onChange={(e) => setProjectName(e.target.value)}
-              placeholder="Enter project name"
-            />
+            <div className="card bg-white/10 backdrop-blur-md border border-base-300 shadow-md p-4">
+              <input
+                type="text"
+                className="input input-bordered w-full bg-transparent backdrop-blur-sm"
+                value={projectName}
+                onChange={(e) => setProjectName(e.target.value)}
+                placeholder="Enter project name"
+              />
+            </div>
           </div>
 
           <div>
             <label className="label">Project Summary:</label>
-            <textarea
-              className="textarea textarea-bordered w-full"
-              value={projectSummary}
-              onChange={(e) => setProjectSummary(e.target.value)}
-              placeholder="A zk-based decentralized identity platform..."
-              rows={3}
-            />
+            <div className="card bg-white/10 backdrop-blur-md border border-base-300 shadow-md p-4">
+              <textarea
+                className="textarea textarea-bordered w-full bg-transparent backdrop-blur-sm"
+                value={projectSummary}
+                onChange={(e) => setProjectSummary(e.target.value)}
+                placeholder="A zk-based decentralized identity platform..."
+                rows={1}
+              />
+            </div>
           </div>
 
           <div>
             <label className="label">Team Members:</label>
             {teamMembers.map((member) => (
-              <div key={member.id} className="card bg-base-200 shadow-md mb-4 p-4">
+              <div key={member.id} className="card bg-white/10 backdrop-blur-md border border-base-300 shadow-md mb-4 p-4">
                 <div className="grid grid-cols-2 gap-4 mb-2">
                   <div>
                     <label className="label text-sm">Name:</label>
                     <input
                       type="text"
-                      className="input input-bordered w-full"
+                      className="input input-bordered w-full bg-transparent backdrop-blur-sm"
                       value={member.name}
                       onChange={(e) => updateTeamMember(member.id, "name", e.target.value)}
                       placeholder="Name"
@@ -116,7 +120,7 @@ const InputTeamPage = () => {
                     <label className="label text-sm">Hours:</label>
                     <input
                       type="number"
-                      className="input input-bordered w-full"
+                      className="input input-bordered w-full bg-transparent backdrop-blur-sm"
                       value={member.hours || ""}
                       onChange={(e) => updateTeamMember(member.id, "hours", Number(e.target.value))}
                       placeholder="Hours worked"
@@ -127,7 +131,7 @@ const InputTeamPage = () => {
                   <label className="label text-sm">Role:</label>
                   <input
                     type="text"
-                    className="input input-bordered w-full"
+                    className="input input-bordered w-full bg-transparent backdrop-blur-sm"
                     value={member.role}
                     onChange={(e) => updateTeamMember(member.id, "role", e.target.value)}
                     placeholder="Frontend, Backend, Designer, etc."
@@ -136,7 +140,7 @@ const InputTeamPage = () => {
                 <div className="mb-2">
                   <label className="label text-sm">Task:</label>
                   <textarea
-                    className="textarea textarea-bordered w-full"
+                    className="textarea textarea-bordered w-full bg-transparent backdrop-blur-sm"
                     value={member.task}
                     onChange={(e) => updateTeamMember(member.id, "task", e.target.value)}
                     placeholder="Describe their contribution"
@@ -163,7 +167,7 @@ const InputTeamPage = () => {
         </div>
         
         <div className="flex justify-between mt-8">
-          <Link href="/" className="btn">
+          <Link href="/" className="btn btn-accent">
             ← Back
           </Link>
           <button 
