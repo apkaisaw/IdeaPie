@@ -57,7 +57,7 @@ const CalculationPage = () => {
         <h1 className="text-3xl font-bold text-center mb-2">🤖 Generating Fair Contribution...</h1>
         <p className="text-center text-gray-500 mb-8">Step 3/4</p>
 
-        <div className="card bg-base-200 p-6 mb-8">
+        <div className="card bg-white/10 backdrop-blur-md border border-base-300 shadow-md p-6 mb-8">
           <h2 className="font-medium mb-3">📚 Reference Case in Use:</h2>
           <div className="mb-1">&ldquo;ZeroKnowledge IDE&rdquo; | Split: 20 / 50 / 30</div>
           <div className="text-sm text-gray-500">Context: Web3 IDE built by 3-person team in 36 hrs</div>
@@ -65,12 +65,12 @@ const CalculationPage = () => {
           <p className="text-sm">This reference informs the AI&apos;s fairness reasoning.</p>
         </div>
 
-        <div className="card bg-base-100 p-6">
+        <div className="card bg-white/10 backdrop-blur-md border border-base-300 shadow-md p-6">
           <h2 className="font-medium mb-4">🔍 AI Processing:</h2>
 
           <div className="space-y-4">
             <div className="flex items-center">
-              <div className={`w-5 h-5 mr-3 rounded-full ${progress.step1 ? "bg-success" : "bg-base-300"}`}>
+              <div className={`w-5 h-5 mr-3 rounded-full ${progress.step1 ? "bg-success" : "bg-base-300/50"}`}>
                 {progress.step1 && <span className="text-white flex justify-center">✓</span>}
               </div>
               <div>
@@ -80,7 +80,7 @@ const CalculationPage = () => {
             </div>
 
             <div className="flex items-center">
-              <div className={`w-5 h-5 mr-3 rounded-full ${progress.step2 ? "bg-success" : "bg-base-300"}`}>
+              <div className={`w-5 h-5 mr-3 rounded-full ${progress.step2 ? "bg-success" : "bg-base-300/50"}`}>
                 {progress.step2 && <span className="text-white flex justify-center">✓</span>}
               </div>
               <div>
@@ -94,7 +94,7 @@ const CalculationPage = () => {
             </div>
 
             <div className="flex items-start">
-              <div className={`w-5 h-5 mt-1 mr-3 rounded-full ${progress.step3 ? "bg-success" : "bg-base-300"}`}>
+              <div className={`w-5 h-5 mt-1 mr-3 rounded-full ${progress.step3 ? "bg-success" : "bg-base-300/50"}`}>
                 {progress.step3 && <span className="text-white flex justify-center">✓</span>}
               </div>
               <div>
