@@ -1,4 +1,3 @@
-## commit message
 Please generate a compliant Git Commit Message, requirements:
 1. Follow the template below:
 ‹type>(<scope>): <subject>
@@ -9,6 +8,7 @@ Please generate a compliant Git Commit Message, requirements:
 - Header is mandatory, Body and Footer are optional
 - Use clear verbs to start
 - Provide necessary contextual information
+- Use hyphens (-) to separate points in the body
 3. Types include:
 - feat: new feature
 - fix: bug fix
