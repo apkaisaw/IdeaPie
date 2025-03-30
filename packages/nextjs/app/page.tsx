@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { useRouter } from "next/navigation";
@@ -10,60 +11,71 @@ const Home: NextPage = () => {
   const router = useRouter();
 
   return (
-    <div className="flex items-center flex-col flex-grow pt-10">
-      <div className="px-5 max-w-4xl w-full">
-        <h1 className="text-center">
-          <span className="block text-4xl font-bold">🥧 IDEA PIE</span>
-          <span className="block text-2xl mt-2">AI-Powered, Blockchain-Backed Fair Bonus Allocator</span>
-        </h1>
-        
-        <div className="mt-8 text-center">
-          <p className="text-lg">
-            Empower your team to split rewards fairly — and
-            verifiably — with the help of AI and blockchain.
-          </p>
-        </div>
-
-        <div className="flex justify-center mt-8">
-          <button 
-            onClick={() => router.push('/input-team')}
-            className="btn btn-primary btn-lg">
-            🔄 Start Splitting the Pie
-          </button>
-        </div>
-
-        <div className="flex justify-center space-x-8 mt-6">
-          <Link href="/how-it-works" className="link link-hover">
-            → How It Works
-          </Link>
-          <Link href="/sample-result" className="link link-hover">
-            → View Sample Result
-          </Link>
-        </div>
-
-        <div className="flex justify-between items-center mt-12 border-t pt-8">
-          <div className="flex items-center">
-            <span className="mr-2">🧠</span>
-            <span>Powered by AI</span>
-          </div>
-          <div className="flex items-center">
-            <span className="mr-2">🔗</span>
-            <span>Secured on Blockchain</span>
-          </div>
-          <div>
-            {!connectedAddress ? (
-              <button className="btn btn-outline btn-sm">
-                Connect Wallet
-              </button>
-            ) : (
-              <div className="text-sm">
-                Connected: {connectedAddress.slice(0, 6)}...{connectedAddress.slice(-4)}
+    <>
+      <div 
+        className="fixed inset-0 -z-10" 
+        style={{ 
+          backgroundImage: 'url(/background.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      />
+      <div className="flex flex-col">
+        {/* Hero Section */}
+        <section className="flex items-center justify-center py-12">
+          <div className="container mx-auto px-6 text-center">
+            <div className="mb-8">
+              <div className="flex justify-center mb-3">
+                <Image 
+                  src="/title.png" 
+                  alt="IDEA PIE" 
+                  width={250} 
+                  height={80} 
+                  priority
+                />
               </div>
-            )}
+              <h2 className="text-2xl font-medium opacity-80 max-w-2xl mx-auto">
+                AI-Powered, Blockchain-Backed Fair Bonus Allocator
+              </h2>
+            </div>
+            
+            <p className="text-xl leading-relaxed max-w-xl mx-auto mb-4">
+              Empower your team to split rewards fairly and verifiably 
+              with the help of AI and blockchain.
+            </p>
           </div>
-        </div>
+        </section>
+        
+        {/* Features Section */}
+        <section className="py-6 container mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 max-w-3xl mx-auto">
+            {[
+              { icon: "🧠", title: "Analyze with AI Agent", desc: "Powered by the smartest LLMs", color: "primary" },
+              { icon: "⚖️", title: "Rooted in Shapley Value", desc: "Based on proven economic principles", color: "secondary" },
+              { icon: "🔗", title: "Verifiable on-chain", desc: "Transparent and immutable records", color: "success" }
+            ].map((feature, index) => (
+              <div key={index} className="flex flex-col items-center">
+                <div className={`w-16 h-16 rounded-full bg-${feature.color} flex items-center justify-center text-${feature.color}-content mb-2`}>
+                  <span className="text-xl">{feature.icon}</span>
+                </div>
+                <h3 className="font-bold text-lg mb-1">{feature.title}</h3>
+                <p className="text-center opacity-75 max-w-xs text-sm">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+          
+          <div className="flex justify-center mt-12 mb-8">
+            <button 
+              onClick={() => router.push('/input-team')}
+              className="btn btn-primary btn-lg px-8 text-lg font-bold"
+            >
+              🔄 Start Splitting the Pie
+            </button>
+          </div>
+        </section>
       </div>
-    </div>
+    </>
   );
 };
 

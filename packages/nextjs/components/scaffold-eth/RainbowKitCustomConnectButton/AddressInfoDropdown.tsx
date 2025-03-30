@@ -14,6 +14,7 @@ import {
   QrCodeIcon,
 } from "@heroicons/react/24/outline";
 import { BlockieAvatar, isENS } from "~~/components/scaffold-eth";
+import { Balance } from "~~/components/scaffold-eth/Balance";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 import { getTargetNetworks } from "~~/utils/scaffold-eth";
 
@@ -24,6 +25,8 @@ type AddressInfoDropdownProps = {
   blockExplorerAddressLink: string | undefined;
   displayName: string;
   ensAvatar?: string;
+  chainName: string;
+  networkColor: string;
 };
 
 export const AddressInfoDropdown = ({
@@ -31,6 +34,8 @@ export const AddressInfoDropdown = ({
   ensAvatar,
   displayName,
   blockExplorerAddressLink,
+  chainName,
+  networkColor,
 }: AddressInfoDropdownProps) => {
   const { disconnect } = useDisconnect();
   const checkSumAddress = getAddress(address);
@@ -48,9 +53,8 @@ export const AddressInfoDropdown = ({
   return (
     <>
       <details ref={dropdownRef} className="dropdown dropdown-end leading-3">
-        <summary tabIndex={0} className="btn btn-secondary btn-sm pl-0 pr-2 shadow-md dropdown-toggle gap-0 !h-auto">
-          <BlockieAvatar address={checkSumAddress} size={30} ensImage={ensAvatar} />
-          <span className="ml-2 mr-1">
+        <summary tabIndex={0} className="btn btn-secondary btn-sm px-2 shadow-md dropdown-toggle gap-0 !h-auto">
+          <span className="mr-1">
             {isENS(displayName) ? displayName : checkSumAddress?.slice(0, 6) + "..." + checkSumAddress?.slice(-4)}
           </span>
           <ChevronDownIcon className="h-6 w-4 ml-2 sm:ml-0" />
@@ -60,6 +64,14 @@ export const AddressInfoDropdown = ({
           className="dropdown-content menu z-[2] p-2 mt-2 shadow-center shadow-accent bg-base-200 rounded-box gap-1"
         >
           <NetworkOptions hidden={!selectingNetwork} />
+          <li className={selectingNetwork ? "hidden" : ""}>
+            <div className="flex flex-col items-center p-2">
+              <Balance address={address} className="min-h-0 h-auto" />
+              <span className="text-xs" style={{ color: networkColor }}>
+                {chainName}
+              </span>
+            </div>
+          </li>
           <li className={selectingNetwork ? "hidden" : ""}>
             {addressCopied ? (
               <div className="btn-sm !rounded-xl flex gap-3 py-3">

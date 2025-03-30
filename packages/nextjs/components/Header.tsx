@@ -16,14 +16,7 @@ type HeaderMenuLink = {
 };
 
 export const menuLinks: HeaderMenuLink[] = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Ideas Square",
-    href: "/ideas",
-  },
+  // 导航按钮已移除
 ];
 
 export const HeaderMenuLinks = () => {
