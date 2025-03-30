@@ -133,7 +133,7 @@ const ReferenceCase = () => {
             ← Back
           </Link>
           <div className="space-x-2">
-            <button onClick={handleSkip} className="btn btn-secondary">
+            <button onClick={handleSkip} className="btn btn-secondary bg-secondary/40 backdrop-blur-md rounded-full">
               Skip This Step
             </button>
             <button

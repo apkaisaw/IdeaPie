@@ -53,7 +53,7 @@ export const AddressInfoDropdown = ({
   return (
     <>
       <details ref={dropdownRef} className="dropdown dropdown-end leading-3">
-        <summary tabIndex={0} className="btn btn-secondary btn-sm px-2 shadow-md dropdown-toggle gap-0 !h-auto">
+        <summary tabIndex={0} className="btn btn-secondary btn-sm px-2 shadow-md dropdown-toggle gap-0 !h-auto rounded-full bg-secondary/40 backdrop-blur-md">
           <span className="mr-1">
             {isENS(displayName) ? displayName : checkSumAddress?.slice(0, 6) + "..." + checkSumAddress?.slice(-4)}
           </span>
@@ -61,7 +61,7 @@ export const AddressInfoDropdown = ({
         </summary>
         <ul
           tabIndex={0}
-          className="dropdown-content menu z-[2] p-2 mt-2 shadow-center shadow-accent bg-base-200 rounded-box gap-1"
+          className="dropdown-content menu z-[2] p-2 mt-2 shadow-center shadow-accent bg-base-200/40 backdrop-blur-md rounded-box gap-1"
         >
           <NetworkOptions hidden={!selectingNetwork} />
           <li className={selectingNetwork ? "hidden" : ""}>

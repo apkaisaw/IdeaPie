@@ -78,24 +78,23 @@ const ResultPage = () => {
         />
         <div className="container mx-auto max-w-2xl py-8 px-4 text-center">
           <h1 className="text-3xl font-bold mb-6">✅ All Set!</h1>
-          <div className="card bg-base-100 p-8 shadow-xl">
+          <div className="card bg-white/10 backdrop-blur-md border border-base-300 shadow-md p-8 rounded-3xl">
             <p className="mb-4">Your contribution record is now published on-chain.</p>
 
-            <div className="bg-base-200 p-3 rounded-lg mb-6">
+            <div className="bg-white/20 backdrop-blur-sm p-3 rounded-full mb-6 border border-base-300">
               <div className="font-mono mb-1">🔗 Record ID: {txHash}</div>
             </div>
 
             <p className="mb-6">📤 Share this with your team or DAO for transparency</p>
 
             <div className="flex justify-center space-x-3 mb-8">
-              <button className="btn btn-sm" onClick={() => navigator.clipboard.writeText(txHash)}>
+              <button className="btn btn-sm btn-outline rounded-full" onClick={() => navigator.clipboard.writeText(txHash)}>
                 🔗 Copy Link
               </button>
-              <button className="btn btn-sm">↗ View on Explorer</button>
-              <button className="btn btn-sm">Share 🐦</button>
+              <button className="btn btn-sm btn-outline rounded-full">↗ View on Explorer</button>
             </div>
 
-            <Link href="/" className="btn btn-primary">
+            <Link href="/" className="btn btn-primary rounded-full">
               🔁 Start a New Split
             </Link>
           </div>
@@ -119,7 +118,7 @@ const ResultPage = () => {
         <h1 className="text-3xl font-bold text-center mb-8">🍰 Suggested Bonus Split</h1>
         <p className="text-center text-gray-500 mb-6">Step 4/4</p>
 
-        <div className="card bg-base-100 p-6 shadow-xl">
+        <div className="card bg-white/10 backdrop-blur-md border border-base-300 shadow-md p-6 rounded-3xl">
           <div className="text-center mb-4">🎉 Based on your input and AI reasoning, here&apos;s the result:</div>
 
           <div className="divider"></div>
@@ -137,14 +136,14 @@ const ResultPage = () => {
           </div>
 
           <div className="flex justify-center space-x-4 mb-6">
-            <button className="btn btn-outline">📊 View Pie Chart</button>
-            <button className="btn btn-outline" onClick={() => setShowExplanation(!showExplanation)}>
+            <button className="btn btn-outline rounded-full">📊 View Pie Chart</button>
+            <button className="btn btn-outline rounded-full" onClick={() => setShowExplanation(!showExplanation)}>
               🔍 See Explanation
             </button>
           </div>
 
           {showExplanation && (
-            <div className="bg-base-200 p-4 rounded-lg mb-6">
+            <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full mb-6 border border-base-300">
               <h3 className="font-medium mb-2">AI Reasoning:</h3>
               <p className="text-sm mb-3">
                 The contribution split was determined using Shapley Value calculations, which assess each member&apos;s
@@ -162,7 +161,7 @@ const ResultPage = () => {
             </div>
           )}
 
-          <div className="bg-base-200 p-4 rounded-lg mb-6">
+          <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full mb-6 border border-base-300">
             <div className="text-center mb-2">🔗 This split will be:</div>
             <div className="grid grid-cols-3 gap-2 text-center">
               <div>
@@ -189,11 +188,11 @@ const ResultPage = () => {
           </div>
 
           <div className="flex justify-between">
-            <button onClick={handleExportJSON} className="btn">
+            <button onClick={handleExportJSON} className="btn rounded-full bg-base-300/40 backdrop-blur-md">
               ⬇️ Export as JSON
             </button>
 
-            <button onClick={handleRecordOnChain} disabled={recordingOnChain} className="btn btn-primary">
+            <button onClick={handleRecordOnChain} disabled={recordingOnChain} className="btn btn-primary rounded-full">
               {recordingOnChain ? (
                 <>
                   <span className="loading loading-spinner loading-xs mr-2"></span>

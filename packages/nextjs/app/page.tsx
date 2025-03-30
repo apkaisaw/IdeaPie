@@ -67,14 +67,14 @@ const Home: NextPage = () => {
           <div className="flex justify-center mt-12 mb-4">
             <button 
               onClick={() => router.push('/input-team')}
-              className="btn btn-lg px-8 text-lg font-bold text-white hover:brightness-105 hover:scale-105 transition-all duration-200"
+              className="btn btn-lg px-8 text-lg font-bold text-white rounded-full backdrop-blur-md hover:brightness-105 hover:scale-105 transition-all duration-200"
               style={{ 
-                backgroundColor: "#E77E45", 
-                borderColor: "#E77E45", 
+                backgroundColor: "rgba(231, 126, 69, 0.6)", 
+                borderColor: "rgba(231, 126, 69, 0.8)", 
                 boxShadow: "0 4px 8px rgba(231, 126, 69, 0.4)",
               }}
             >
-              🔄 Start Splitting the Pie
+              Start Splitting the Pie 🔪🍕
             </button>
           </div>
         </section>
