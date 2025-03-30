@@ -17,6 +17,7 @@ export const RPC_CHAIN_NAMES: Record<number, string> = {
   [chains.mainnet.id]: "eth-mainnet",
   [chains.goerli.id]: "eth-goerli",
   [chains.sepolia.id]: "eth-sepolia",
+  [97]: "bsc-testnet",  // BNB Smart Chain Testnet
   [chains.optimism.id]: "opt-mainnet",
   [chains.optimismGoerli.id]: "opt-goerli",
   [chains.optimismSepolia.id]: "opt-sepolia",
@@ -48,6 +49,9 @@ export const NETWORKS_EXTRA_DATA: Record<string, ChainAttributes> = {
   },
   [chains.mainnet.id]: {
     color: "#ff8b9e",
+  },
+  [97]: {  // BNB Smart Chain Testnet
+    color: "#f0b90b",  // BNB 黄色
   },
   [chains.sepolia.id]: {
     color: ["#5f4bb6", "#87ff65"],

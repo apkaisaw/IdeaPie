@@ -1,5 +1,32 @@
 import * as chains from "viem/chains";
 
+//BNB Smart Chain Testnet
+const bscTestnet = {
+  id: 97,
+  name: 'BNB Smart Chain Testnet',
+  network: 'bsc-testnet',
+  nativeCurrency: {
+    decimals: 18,
+    name: 'tBNB',
+    symbol: 'tBNB',
+  },
+  rpcUrls: {
+    default: {
+      http: ['https://bsc-testnet.nodereal.io/v1/e9a36765eb8a40b9bd12e680a1fd2bc5'],
+    },
+    public: {
+      http: ['https://bsc-testnet.nodereal.io/v1/e9a36765eb8a40b9bd12e680a1fd2bc5'],
+    },
+  },
+  blockExplorers: {
+    default: {
+      name: 'BscScan (Testnet)',
+      url: 'https://testnet.bscscan.com',
+    },
+  },
+  testnet: true,
+} as const;
+
 export type ScaffoldConfig = {
   targetNetworks: readonly chains.Chain[];
   pollingInterval: number;
@@ -13,7 +40,7 @@ export const DEFAULT_ALCHEMY_API_KEY = "oKxs-03sij-U_N0iOlrSsZFr29-IqbuF";
 
 const scaffoldConfig = {
   // The networks on which your DApp is live
-  targetNetworks: [chains.foundry],
+  targetNetworks: [chains.foundry, bscTestnet],
 
   // The interval at which your front-end polls the RPC servers for new data
   // it has no effect if you only target the local network (default is 4000)
