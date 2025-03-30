@@ -35,14 +35,24 @@ const SAMPLE_CASES: ReferenceCase[] = [
 const ReferenceCase = () => {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCase, setSelectedCase] = useState<string | null>(null);
+  const [selectedCases, setSelectedCases] = useState<string[]>([]);
 
   const filteredCases = SAMPLE_CASES.filter((c) =>
     c.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const toggleCaseSelection = (caseId: string) => {
+    setSelectedCases(prev => {
+      if (prev.includes(caseId)) {
+        return prev.filter(id => id !== caseId);
+      } else {
+        return [...prev, caseId];
+      }
+    });
+  };
+
   const handleContinue = () => {
-    // In a real app, would save selected case to context
+    // In a real app, would save selected cases to context
     router.push("/calculation");
   };
 
@@ -67,16 +77,16 @@ const ReferenceCase = () => {
 
         <div className="space-y-6">
           <p className="text-center">
-            Choose a previous on-chain bonus split as a reference.
+            Choose one or more previous on-chain bonus splits as references.
           </p>
 
           <div className="relative">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-              🔍
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none z-10">
+              <span className="text-xl text-primary font-bold">🔍</span>
             </div>
             <input
               type="text"
-              className="input input-bordered w-full pl-10"
+              className="input input-bordered w-full pl-10 bg-white/10 backdrop-blur-md"
               placeholder="Search: zk Hackathons / Web3 Infra"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -89,13 +99,18 @@ const ReferenceCase = () => {
               {filteredCases.map((caseItem) => (
                 <div
                   key={caseItem.id}
-                  className={`p-4 border rounded-lg cursor-pointer ${
-                    selectedCase === caseItem.id ? "border-primary bg-base-200" : "border-base-300"
+                  className={`p-4 border rounded-lg cursor-pointer backdrop-blur-sm ${
+                    selectedCases.includes(caseItem.id) 
+                      ? "border-primary border-2 bg-primary/30 shadow-lg" 
+                      : "border-base-300 bg-white/10"
                   }`}
-                  onClick={() => setSelectedCase(caseItem.id)}
+                  onClick={() => toggleCaseSelection(caseItem.id)}
                 >
                   <div className="flex justify-between items-center">
-                    <div className="font-medium">&ldquo;{caseItem.name}&rdquo;</div>
+                    <div className="font-medium flex items-center">
+                      {selectedCases.includes(caseItem.id) && <span className="inline-block text-white bg-primary px-1.5 py-0.5 rounded-full mr-2 text-sm font-bold">✓</span>}
+                      &ldquo;{caseItem.name}&rdquo;
+                    </div>
                     <div>Split: {caseItem.split}</div>
                   </div>
                   <div className="text-sm text-gray-500 mt-1">
@@ -114,19 +129,19 @@ const ReferenceCase = () => {
         </div>
 
         <div className="flex justify-between mt-8">
-          <Link href="/input-team" className="btn">
+          <Link href="/input-team" className="btn btn-accent">
             ← Back
           </Link>
           <div className="space-x-2">
-            <button onClick={handleSkip} className="btn">
+            <button onClick={handleSkip} className="btn btn-secondary">
               Skip This Step
             </button>
             <button
               onClick={handleContinue}
               className="btn btn-primary"
-              disabled={!selectedCase}
+              disabled={selectedCases.length === 0}
             >
-              → Use Selected Case
+              → Use Selected Cases
             </button>
           </div>
         </div>
