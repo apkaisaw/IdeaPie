@@ -23,52 +23,56 @@ const Home: NextPage = () => {
       />
       <div className="flex flex-col">
         {/* Hero Section */}
-        <section className="flex items-center justify-center py-12">
-          <div className="container mx-auto px-6 text-center">
+        <section className="flex items-center justify-center py-4">
+          <div className="container max-w-6xl mx-auto px-6 text-center">
             <div className="mb-8">
               <div className="flex justify-center mb-3">
                 <Image 
                   src="/title.png" 
                   alt="IDEA PIE" 
-                  width={250} 
-                  height={80} 
+                  width={350} 
+                  height={112} 
                   priority
                 />
               </div>
-              <h2 className="text-2xl font-medium opacity-80 max-w-2xl mx-auto">
+              <h2 className="text-2xl md:text-3xl font-semibold w-full mx-auto bg-gradient-to-r from-[#FFFDD0] to-[#FAEBD7] bg-clip-text text-transparent drop-shadow-md" style={{ textShadow: "0px 2px 4px rgba(77, 59, 39, 0.2)" }}>
                 AI-Powered, Blockchain-Backed Fair Bonus Allocator
               </h2>
             </div>
             
-            <p className="text-xl leading-relaxed max-w-xl mx-auto mb-4">
-              Empower your team to split rewards fairly and verifiably 
-              with the help of AI and blockchain.
+            <p className="text-2xl leading-relaxed max-w-xl mx-auto mb-4 font-semibold text-neutral" style={{ textShadow: "0px 1px 0px #FFFACD, 0px 2px 3px rgba(255, 250, 205, 0.7)" }}>
+              Use this tool to divide hackathon <span className="text-neutral" style={{ textShadow: "0px 1px 0px #FFD700, 0px 2px 4px rgba(255, 215, 0, 0.8)" }}>prizes</span> fairly among your team members.
             </p>
           </div>
         </section>
         
         {/* Features Section */}
-        <section className="py-6 container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 max-w-3xl mx-auto">
+        <section className="py-6 container max-w-6xl mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 max-w-4xl mx-auto">
             {[
-              { icon: "🧠", title: "Analyze with AI Agent", desc: "Powered by the smartest LLMs", color: "primary" },
-              { icon: "⚖️", title: "Rooted in Shapley Value", desc: "Based on proven economic principles", color: "secondary" },
-              { icon: "🔗", title: "Verifiable on-chain", desc: "Transparent and immutable records", color: "success" }
+              { icon: "🧠", title: "Analyze with AI Agent", style: { backgroundColor: "rgba(139, 69, 19, 0.75)", color: "#FFFFFF" } },
+              { icon: "⚖️", title: "Rooted in Shapley Value", style: { backgroundColor: "rgba(191, 159, 127, 0.75)", color: "#4D3B27" } },
+              { icon: "🔗", title: "Verifiable on-chain", style: { backgroundColor: "rgba(160, 196, 166, 0.75)", color: "#4D3B27" } }
             ].map((feature, index) => (
               <div key={index} className="flex flex-col items-center">
-                <div className={`w-16 h-16 rounded-full bg-${feature.color} flex items-center justify-center text-${feature.color}-content mb-2`}>
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mb-2" 
+                  style={feature.style}>
                   <span className="text-xl">{feature.icon}</span>
                 </div>
                 <h3 className="font-bold text-lg mb-1">{feature.title}</h3>
-                <p className="text-center opacity-75 max-w-xs text-sm">{feature.desc}</p>
               </div>
             ))}
           </div>
           
-          <div className="flex justify-center mt-12 mb-8">
+          <div className="flex justify-center mt-12 mb-4">
             <button 
               onClick={() => router.push('/input-team')}
-              className="btn btn-primary btn-lg px-8 text-lg font-bold"
+              className="btn btn-lg px-8 text-lg font-bold text-white hover:brightness-105 hover:scale-105 transition-all duration-200"
+              style={{ 
+                backgroundColor: "#E77E45", 
+                borderColor: "#E77E45", 
+                boxShadow: "0 4px 8px rgba(231, 126, 69, 0.4)",
+              }}
             >
               🔄 Start Splitting the Pie
             </button>
