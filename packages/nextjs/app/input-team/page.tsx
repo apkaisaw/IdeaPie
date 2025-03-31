@@ -10,6 +10,7 @@ interface TeamMember {
   role: string;
   hours: number;
   task: string;
+  walletAddress: string;
 }
 
 const InputTeamPage = () => {
@@ -23,6 +24,7 @@ const InputTeamPage = () => {
       role: "",
       hours: 0,
       task: "",
+      walletAddress: "",
     },
   ]);
 
@@ -35,6 +37,7 @@ const InputTeamPage = () => {
         role: "",
         hours: 0,
         task: "",
+        walletAddress: "",
       },
     ]);
   };
@@ -57,6 +60,20 @@ const InputTeamPage = () => {
     // Save data to context or state management
     // For now, just navigate to next page
     router.push("/reference-case");
+  };
+
+  const isValidEthereumAddress = (address: string): boolean => {
+    return /^0x[a-fA-F0-9]{40}$/.test(address);
+  };
+
+  const isFormValid = (): boolean => {
+    return (
+      !!projectName.trim() && 
+      teamMembers.every(m => 
+        m.name.trim() && 
+        isValidEthereumAddress(m.walletAddress)
+      )
+    );
   };
 
   return (
@@ -128,6 +145,19 @@ const InputTeamPage = () => {
                   </div>
                 </div>
                 <div className="mb-2">
+                  <label className="label text-sm">Wallet Address:</label>
+                  <input
+                    type="text"
+                    className={`input input-bordered w-full bg-transparent backdrop-blur-sm font-mono text-sm ${member.walletAddress && !isValidEthereumAddress(member.walletAddress) ? 'input-error' : ''}`}
+                    value={member.walletAddress}
+                    onChange={(e) => updateTeamMember(member.id, "walletAddress", e.target.value)}
+                    placeholder="0x..."
+                  />
+                  {member.walletAddress && !isValidEthereumAddress(member.walletAddress) && (
+                    <p className="text-xs text-error mt-1">请输入有效的以太坊地址 (0x + 40个十六进制字符)</p>
+                  )}
+                </div>
+                <div className="mb-2">
                   <label className="label text-sm">Role:</label>
                   <input
                     type="text"
@@ -173,7 +203,7 @@ const InputTeamPage = () => {
           <button 
             onClick={handleNext}
             className="btn btn-primary"
-            disabled={!projectName.trim() || teamMembers.some(m => !m.name.trim())}
+            disabled={!isFormValid()}
           >
             Next →
           </button>

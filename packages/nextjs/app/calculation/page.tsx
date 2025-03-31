@@ -16,19 +16,19 @@ const CalculationPage = () => {
   useEffect(() => {
     const timer1 = setTimeout(() => {
       setProgress((prev) => ({ ...prev, step1: true }));
-    }, 1500);
+    }, 3000);
 
     const timer2 = setTimeout(() => {
       setProgress((prev) => ({ ...prev, step2: true }));
-    }, 3000);
+    }, 6000);
 
     const timer3 = setTimeout(() => {
       setProgress((prev) => ({ ...prev, step3: true }));
-    }, 4500);
+    }, 9000);
 
     const timer4 = setTimeout(() => {
       setIsComplete(true);
-    }, 5000);
+    }, 10000);
 
     return () => {
       clearTimeout(timer1);

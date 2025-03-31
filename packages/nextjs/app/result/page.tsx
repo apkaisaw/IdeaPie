@@ -81,7 +81,7 @@ const ResultPage = () => {
           <div className="card bg-white/10 backdrop-blur-md border border-base-300 shadow-md p-8 rounded-3xl">
             <p className="mb-4">Your contribution record is now published on-chain.</p>
 
-            <div className="bg-white/20 backdrop-blur-sm p-3 rounded-full mb-6 border border-base-300">
+            <div className="bg-white/20 backdrop-blur-sm p-3 rounded-xl mb-6 border border-base-300">
               <div className="font-mono mb-1">🔗 Record ID: {txHash}</div>
             </div>
 
@@ -143,7 +143,7 @@ const ResultPage = () => {
           </div>
 
           {showExplanation && (
-            <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full mb-6 border border-base-300">
+            <div className="bg-white/20 backdrop-blur-sm p-4 rounded-xl mb-6 border border-base-300">
               <h3 className="font-medium mb-2">AI Reasoning:</h3>
               <p className="text-sm mb-3">
                 The contribution split was determined using Shapley Value calculations, which assess each member&apos;s
@@ -161,7 +161,7 @@ const ResultPage = () => {
             </div>
           )}
 
-          <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full mb-6 border border-base-300">
+          <div className="bg-white/20 backdrop-blur-sm p-4 rounded-xl mb-6 border border-base-300">
             <div className="text-center mb-2">🔗 This split will be:</div>
             <div className="grid grid-cols-3 gap-2 text-center">
               <div>
