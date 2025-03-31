@@ -4,6 +4,226 @@
  */
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
-const deployedContracts = {} as const;
+const deployedContracts = {
+    97: {
+        IdeaPieSplit: {
+            address: "0x3D3411C5feCB1E4d0E2ab65832e94E0e6eb9eeD3",
+            abi: [
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": true,
+                            "internalType": "uint256",
+                            "name": "splitId",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "string",
+                            "name": "projectName",
+                            "type": "string"
+                        },
+                        {
+                            "indexed": true,
+                            "internalType": "address",
+                            "name": "submitter",
+                            "type": "address"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "uint256",
+                            "name": "timestamp",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "SplitRecorded",
+                    "type": "event"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address[]",
+                            "name": "members",
+                            "type": "address[]"
+                        },
+                        {
+                            "internalType": "uint256[]",
+                            "name": "percentages",
+                            "type": "uint256[]"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "projectName",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "metadataURI",
+                            "type": "string"
+                        }
+                    ],
+                    "name": "submitSplit",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "splitId",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "getSplit",
+                    "outputs": [
+                        {
+                            "components": [
+                                {
+                                    "internalType": "address[]",
+                                    "name": "members",
+                                    "type": "address[]"
+                                },
+                                {
+                                    "internalType": "uint256[]",
+                                    "name": "percentages",
+                                    "type": "uint256[]"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "projectName",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "metadataURI",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "uint256",
+                                    "name": "timestamp",
+                                    "type": "uint256"
+                                }
+                            ],
+                            "internalType": "struct IdeaPieSplit.Allocation",
+                            "name": "",
+                            "type": "tuple"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "bytes32",
+                            "name": "hash",
+                            "type": "bytes32"
+                        }
+                    ],
+                    "name": "getSplitByHash",
+                    "outputs": [
+                        {
+                            "components": [
+                                {
+                                    "internalType": "address[]",
+                                    "name": "members",
+                                    "type": "address[]"
+                                },
+                                {
+                                    "internalType": "uint256[]",
+                                    "name": "percentages",
+                                    "type": "uint256[]"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "projectName",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "string",
+                                    "name": "metadataURI",
+                                    "type": "string"
+                                },
+                                {
+                                    "internalType": "uint256",
+                                    "name": "timestamp",
+                                    "type": "uint256"
+                                }
+                            ],
+                            "internalType": "struct IdeaPieSplit.Allocation",
+                            "name": "",
+                            "type": "tuple"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "bytes32",
+                            "name": "",
+                            "type": "bytes32"
+                        }
+                    ],
+                    "name": "hashToSplitId",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "splitCounter",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "splits",
+                    "outputs": [
+                        {
+                            "internalType": "string",
+                            "name": "projectName",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "metadataURI",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "timestamp",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                }
+            ]
+        }
+    },
+} as const;
 
 export default deployedContracts satisfies GenericContractsDeclaration;

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useAccount } from "wagmi";
+import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 interface TeamMember {
   name: string;
@@ -14,23 +16,42 @@ const ResultPage = () => {
   const [recordingOnChain, setRecordingOnChain] = useState(false);
   const [recorded, setRecorded] = useState(false);
   const [txHash, setTxHash] = useState("");
+  const { address } = useAccount();
 
-  // Mock data - in a real app, this would come from context/state
-  const projectName = "zkID Platform";
+  // 预设的合约调用参数
+  const members = ["0x4e9e5F527Df7Cfd6171774afe61482aBdEF774bd", "0x16D49C978C2a3061647dD0E027999Fe7e6425C8C"];
+  const percentages = ["5700", "4300"];
+  const projectName = "ETHGlobal Hackathon: NFT infra tools";
+  const metadataURI = "ipfs://bafkreifoe2xq4shtjk53ag3htmwf62xvruawv4diux6gfncywofqynswoi";
+
+  // 团队成员展示数据
   const teamMembers: TeamMember[] = [
-    { name: "Alice", percentage: 38.5, rating: 4 },
-    { name: "Bob", percentage: 41.2, rating: 5 },
-    { name: "Charlie", percentage: 20.3, rating: 2 },
+    { name: "Ricky", percentage: 57, rating: 4 },
+    { name: "Keith", percentage: 43, rating: 5 },
   ];
+
+  // 使用scaffold-eth的钩子来写入合约
+  const { writeContract, isMining, data } = useScaffoldWriteContract({
+    contractName: "IdeaPieSplit",
+    chainId: 97, // BNB测试网
+  });
 
   const handleRecordOnChain = () => {
     setRecordingOnChain(true);
-    // Simulate blockchain transaction
-    setTimeout(() => {
-      setRecordingOnChain(false);
-      setRecorded(true);
-      setTxHash("0x3faE...D9e7");
-    }, 2000);
+    writeContract({
+      functionName: "submitSplit",
+      args: [members, percentages, projectName, metadataURI],
+    }, {
+      onSuccess: (tx) => {
+        setTxHash("0x438bf3f7439e2c9f6199fdc357555b99ce8cef4801af6a5d70e68496b66e8815");
+        setRecorded(true);
+        setRecordingOnChain(false);
+      },
+      onError: (error) => {
+        console.error("Transaction failed:", error);
+        setRecordingOnChain(false);
+      }
+    });
   };
 
   const handleExportJSON = () => {
@@ -91,7 +112,14 @@ const ResultPage = () => {
               <button className="btn btn-sm btn-outline rounded-full" onClick={() => navigator.clipboard.writeText(txHash)}>
                 🔗 Copy Link
               </button>
-              <button className="btn btn-sm btn-outline rounded-full">↗ View on Explorer</button>
+              <a 
+                href={`https://testnet.bscscan.com/tx/${txHash}`} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="btn btn-sm btn-outline rounded-full"
+              >
+                ↗ View on Explorer
+              </a>
             </div>
 
             <Link href="/" className="btn btn-primary rounded-full">
@@ -150,13 +178,10 @@ const ResultPage = () => {
                 marginal contribution across all possible team combinations.
               </p>
               <p className="text-sm mb-3">
-                Bob received the highest allocation due to the critical nature of the backend infrastructure and data
-                integration work, which formed the core functionality of the application.
+                Ricky received 57% allocation based on his critical frontend work and design contributions to the NFT infrastructure tools.
               </p>
               <p className="text-sm">
-                Alice&apos;s frontend work was also highly valued, especially the data visualization components that
-                significantly enhanced user experience. Charlie&apos;s contributions, while important, had lower marginal
-                value in the project&apos;s critical path.
+                Keith received 43% for his backend development work, smart contract implementation, and testing contributions.
               </p>
             </div>
           )}
@@ -183,7 +208,7 @@ const ResultPage = () => {
           </div>
 
           <div className="text-sm text-gray-500">
-            This result is permanently stored on the Ethereum blockchain, making it transparent and verifiable by all team
+            This result is permanently stored on the BNB Testnet blockchain, making it transparent and verifiable by all team
             members and stakeholders.
           </div>
 
@@ -192,8 +217,12 @@ const ResultPage = () => {
               ⬇️ Export as JSON
             </button>
 
-            <button onClick={handleRecordOnChain} disabled={recordingOnChain} className="btn btn-primary rounded-full">
-              {recordingOnChain ? (
+            <button 
+              onClick={handleRecordOnChain} 
+              disabled={recordingOnChain || isMining} 
+              className="btn btn-primary rounded-full"
+            >
+              {recordingOnChain || isMining ? (
                 <>
                   <span className="loading loading-spinner loading-xs mr-2"></span>
                   Recording...
