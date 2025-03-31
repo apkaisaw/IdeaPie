@@ -1,7 +1,9 @@
 # 🥧 Idea Pie — Fair Bonus Splitting with AI & Blockchain
 
 **Idea Pie** is an AI-powered, blockchain-backed tool that helps hackathon teams split their bonus fairly based on actual contributions.  
-Using large language models + Shapley Value algorithm, it evaluates each member’s task and generates a verifiable, on-chain record of the proposed split.
+Using large language models + Shapley Value algorithm, it evaluates each member's task and generates a verifiable, on-chain record of the proposed split.
+
+![Idea Pie Homepage](packages/nextjs/public/readme.png)
 
 ---
 
