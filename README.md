@@ -1,80 +1,108 @@
-# 🏗 Scaffold-ETH 2
+# 🥧 Idea Pie — Fair Bonus Splitting with AI & Blockchain
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+**Idea Pie** is an AI-powered, blockchain-backed tool that helps hackathon teams split their bonus fairly based on actual contributions.  
+Using large language models + Shapley Value algorithm, it evaluates each member’s task and generates a verifiable, on-chain record of the proposed split.
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+---
 
-⚙️ Built using NextJS, RainbowKit, Foundry, Wagmi, Viem, and Typescript.
+## 🔍 Problem
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+Most teams struggle with fair bonus allocation after a project is completed. Who did more? Who was critical? These questions can lead to tension and unfair outcomes.
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+---
 
-## Requirements
+## 💡 Solution
 
-Before you begin, you need to install the following tools:
+Idea Pie simplifies this process:
+- Describe what each team member did
+- (Optionally) Select a similar reference case
+- Let the AI evaluate task contributions
+- Get a transparent bonus allocation based on Shapley Value
+- Record it on-chain, forever
 
-- [Node (>= v20.18.3)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+---
 
-## Quickstart
+## 🚀 Tech Stack
 
-To get started with Scaffold-ETH 2, follow the steps below:
+| Layer       | Stack                          |
+|------------|---------------------------------|
+| Frontend    | Next.js 14, Tailwind CSS        |
+| AI Logic    | Prompt-based LLM (e.g. Qwen/GPT-4) |
+| Blockchain  | Solidity (allocation record contract) |
+| Storage     | IPFS (for metadata + explanation) |
 
-1. Install dependencies if it was skipped in CLI:
+---
 
+## 📦 MVP Features
+
+- [x] Contribution form: project + team info
+- [x] Optional reference case selection
+- [x] One-shot LLM call: scoring + Shapley allocation
+- [x] Pie chart + reasoning view
+- [x] On-chain submission via smart contract
+- [x] IPFS metadata with AI explanations
+
+---
+
+## 🔗 Smart Contract (Solidity)
+
+- Records member addresses, split percentages, project name, and IPFS metadata URI
+- Public and immutable
+- See `/contracts/IdeaPieSplit.sol`
+
+---
+
+## 📁 IPFS Metadata Format
+
+```json
+{
+  "project": "zkID Platform",
+  "members": {
+    "0x...": {
+      "name": "Alice",
+      "score": 85,
+      "share": 40.1,
+      "explanation": "...",
+      "marginal_value": "..."
+    }
+  },
+  "reference_case_used": {
+    "title": "...",
+    "split": "...",
+    "description": "..."
+  },
+  "shapley_summary": "...",
+  "prompt_used": "...",
+  "timestamp": "..."
+}
 ```
-cd my-dapp-example
-yarn install
-```
 
-2. Run a local network in the first terminal:
+---
 
-```
-yarn chain
-```
+## 🧠 Why Shapley Value?
 
-This command starts a local Ethereum network using Foundry. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `packages/foundry/foundry.toml`.
+Shapley Value is a Nobel-prize-winning method for fair division in cooperative game theory.  
+It considers all possible combinations of team members to evaluate marginal contributions.
 
-3. On a second terminal, deploy the test contract:
+---
 
-```
-yarn deploy
-```
+## 🪙 Why Blockchain?
 
-This command deploys a test smart contract to the local network. The contract is located in `packages/foundry/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/foundry/script` to deploy the contract to the network. You can also customize the deploy script.
+- ✅ Immutable proof of contribution
+- ✅ Transparent, verifiable, shareable
+- ✅ Useful for future reference or contributor reputation
 
-4. On a third terminal, start your NextJS app:
+---
 
-```
-yarn start
-```
+## 📌 Goals for This Hackathon
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+- Deliver a working MVP from input → AI → on-chain in one flow
+- Support real use in hackathon teams
+- Lay the foundation for future contributor reputation systems
 
-Run smart contract test with `yarn foundry:test`
+---
 
-- Edit your smart contracts in `packages/foundry/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/foundry/script`
+## 📬 Contact
 
-
-## Documentation
-
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
-
-To know more about its features, check out our [website](https://scaffoldeth.io).
-
-## Contributing to Scaffold-ETH 2
-
-We welcome contributions to Scaffold-ETH 2!
-
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+Built with ❤️ by [Keith]  
+Want to use or build with Idea Pie? DM me or fork it!
